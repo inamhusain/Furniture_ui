@@ -9,34 +9,45 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.scaffoldBG,
-        body: Column(
-          children: [
-            CommonWidgets.MyAppBar(),
-            CommonWidgets.headerCards(),
-            SizedBox(height: 10),
-            title(
-                context: context,
-                titleText: 'Modern',
-                subtitleText: '. Good quality item'),
-            listOfCards(),
-            SizedBox(height: 20),
-            title(
-                context: context,
-                titleText: "Popular",
-                subtitleText: ".  In recent month"),
-            SizedBox(height: 20),
-            endingCard(),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CommonWidgets.MyAppBar(
+                  context: context, height: height, width: width),
+              CommonWidgets.headerCards(
+                  context: context, height: height, width: width),
+              SizedBox(height: 10),
+              title(
+                  context: context,
+                  titleText: 'Modern',
+                  width: width,
+                  subtitleText: '. Good quality item'),
+              listOfCards(height: height, width: width),
+              SizedBox(height: 20),
+              title(
+                  context: context,
+                  titleText: "Popular",
+                  width: width,
+                  subtitleText: ".  In recent month"),
+              SizedBox(height: 20),
+              endingCard(),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Expanded listOfCards() {
-    return Expanded(
+  listOfCards({width, height}) {
+    return Container(
+      height: 300,
       child: Stack(
         children: [
           ScrollConfiguration(
@@ -264,12 +275,12 @@ class HomeScreen extends StatelessWidget {
 
   title({context, width, titleText, subtitleText}) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: width * 0.02),
       child: Row(
         children: [
           Text(
             '$titleText ',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
           Text(
             '$subtitleText',

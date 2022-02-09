@@ -5,7 +5,7 @@ import 'package:furniture_ui/utils.dart';
 import 'dart:math' as math;
 
 class CommonWidgets {
-  static MyAppBar() {
+  static MyAppBar({context, height, width}) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
@@ -49,15 +49,16 @@ class CommonWidgets {
     );
   }
 
-  static headerCards() {
+  static headerCards({context, width, height}) {
     return SizedBox(
-      height: 110,
+      height: height * 0.135,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: Utils.iconList.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+            margin: EdgeInsets.symmetric(
+                horizontal: width * 0.05, vertical: height * 0.032),
             child: Transform.rotate(
               angle: -math.pi / 1.34,
               child: Container(
@@ -77,7 +78,7 @@ class CommonWidgets {
                   borderRadius: BorderRadius.circular(7),
                 ),
                 // height: 100,
-                width: 60,
+                width: height * 0.075,
                 child: Transform.rotate(
                   angle: math.pi / 1.34,
                   child: Padding(

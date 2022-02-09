@@ -11,7 +11,13 @@ class AppColors {
 }
 
 class Utils {
-  
+  static ratioSize(context, size) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
+    return (height / 10 * width / 10) / 1000 * size;
+  }
+
   static List iconList = [
     Icons.monitor,
     Icons.account_balance_wallet_rounded,
